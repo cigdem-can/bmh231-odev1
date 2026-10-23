@@ -1,4 +1,5 @@
 const http = require('http');
+const dayjs = require('dayjs');
 
 const PORT = 3000;
 
@@ -31,9 +32,18 @@ const sunucu = http.createServer((req, res) => {
     return;
   }
 
- if (req.url === '/api/ders') {
+  if (req.url === '/api/ders') {
     const ders = { kod: 'BMH231', ad: 'Web Programlama', gun: 'Cuma' };
     gonder(res, 200, 'application/json', JSON.stringify(ders));
+    return;
+  }
+
+  if (req.url === '/api/agep') {
+    const sonTeslim = dayjs('2026-11-01');
+    const bugun = dayjs();
+    const kalanGun = sonTeslim.startOf('day').diff(bugun.startOf('day'), 'day');
+    const yanit = { son_teslim: '01.11.2026', kalan_gun: kalanGun };
+    gonder(res, 200, 'application/json', JSON.stringify(yanit));
     return;
   }
 
