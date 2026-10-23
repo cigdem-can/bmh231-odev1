@@ -32,6 +32,23 @@ const sunucu = http.createServer((req, res) => {
     return;
   }
 
+ if (req.url === '/hakkimda') {
+    const sayfa = `<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Hakkımda</title>
+</head>
+<body>
+  <h1>Hakkımda</h1>
+  <p>Ben Çiğdem CAN. Yozgat Bozok Üniversitesi Bilgisayar Mühendisliği 2. sınıf öğrencisiyim.</p>
+  <p><a href="/">Ana sayfaya dön</a></p>
+</body>
+</html>`;
+    gonder(res, 200, 'text/html', sayfa);
+    return;
+  }
+
   if (req.url === '/api/ders') {
     const ders = { kod: 'BMH231', ad: 'Web Programlama', gun: 'Cuma' };
     gonder(res, 200, 'application/json', JSON.stringify(ders));
