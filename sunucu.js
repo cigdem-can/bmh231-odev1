@@ -31,6 +31,12 @@ const sunucu = http.createServer((req, res) => {
     return;
   }
 
+ if (req.url === '/api/ders') {
+    const ders = { kod: 'BMH231', ad: 'Web Programlama', gun: 'Cuma' };
+    gonder(res, 200, 'application/json', JSON.stringify(ders));
+    return;
+  }
+
   gonder(res, 404, 'text/plain', 'Sayfa bulunamadı');
 });
 
